@@ -5,7 +5,6 @@ from itertools import chain
 import time
 
 import aiohttp
-import requests
 from lxml import html
 
 
