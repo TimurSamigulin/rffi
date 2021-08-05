@@ -8,12 +8,6 @@ import aiohttp
 from lxml import html
 
 
-# search query
-cont_type = "Конкурсы научных проектов по областям знания, включенным в классификатор РФФИ (группа \"а\")"
-cont = "А"
-chosen_year = "2018"
-
-
 URL = "http://search.rfbr.ru/index.php"
 SQL_URL = "http://search.rfbr.ru/set_sql.php"
 PAGE_URL = "http://search.rfbr.ru/show_page.php"
@@ -170,7 +164,7 @@ async def get_project(p_id):
     return project_data
 
 
-async def main():
+async def main(cont_type, cont, chosen_year):
     contest_types = await get_contest_types()
     for contest_type_id, c_type in contest_types.items():
         if c_type["name"] != cont_type:
@@ -237,4 +231,9 @@ async def main():
 
 
 if __name__ == "__main__":
-    loop.run_until_complete(main())
+    # search query
+    cont_type = "Конкурсы научных проектов по областям знания, включенным в классификатор РФФИ (группа \"а\")"
+    cont = "А"
+    chosen_year = "2018"
+
+    loop.run_until_complete(main(cont_type, cont, chosen_year))
